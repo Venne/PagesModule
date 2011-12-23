@@ -29,16 +29,11 @@ class PagesForm extends \Venne\Forms\PageForm {
 		//$builder = new \Venne\Forms\Builders\EntityBuilder();
 		//$builder->build($this, "\\App\\PagesModule\\PagesEntity");
 
-		$this->addGroup("Layout");
-		$this->addSelect("layout", "Layout")->setPrompt("simply page");
-
 		$this->addGroup("Dates");
 		$this->addDateTime("created", "Created")->setDefaultValue(new \Nette\DateTime);
 		$this->addDateTime("updated", "Updated")->setDefaultValue(new \Nette\DateTime);
 
-		$this->addGroup("URL");
-		$this->addText("url", "URL")
-				->setOption("description", "(example: 'contact')");
+		
 		$this->addGroup("Text");
 		$this->addEditor("text", "", Null, 20);
 	}
@@ -51,7 +46,7 @@ class PagesForm extends \Venne\Forms\PageForm {
 			"module" => "Pages",
 			"presenter" => "Default",
 			"action" => "default",
-			"url" => isset($this->entity->url) ? $this->entity->url : NULL
+			"url" => isset($this->entity->localUrl) ? $this->entity->localUrl : NULL
 		);
 	}
 

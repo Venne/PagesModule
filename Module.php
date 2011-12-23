@@ -11,6 +11,8 @@
 
 namespace App\PagesModule;
 
+use Nette\DI\ContainerBuilder;
+
 /**
  * @author Josef Kříž
  */
@@ -46,33 +48,23 @@ class Module extends \Venne\Module\AutoModule {
 
 
 
-	public function setRoutes(\Nette\Application\Routers\RouteList $router, $prefix = "")
+	public function loadConfiguration(ContainerBuilder $container, array $config)
 	{
-		$router[] = new \Nette\Application\Routers\Route($prefix . '[<url .+>]', array(
-					'module' => 'Pages',
-					'presenter' => 'Default',
-					'action' => 'default',
-					'url' => array(
-						\Nette\Application\Routers\Route::VALUE => NULL,
-						\Nette\Application\Routers\Route::FILTER_IN => NULL,
-						\Nette\Application\Routers\Route::FILTER_OUT => NULL,
-					)
-						)
-		);
+		$container->addDefinition("pagesRepository")
+				->setClass("Venne\Doctrine\ORM\BaseRepository")
+				->setFactory("@entityManager::getRepository", array("\\App\\PagesModule\\PagesEntity"))
+				->addTag("repository")
+				->setAutowired(false);
 	}
 
 
 
-	public function configure(\Venne\DI\Container $container, \App\CoreModule\CmsManager $manager)
+	public function configure(\Nette\DI\Container $container, \App\CoreModule\CmsManager $manager)
 	{
 		parent::configure($container, $manager);
 
-		$manager->addRepository("pages", function() use ($container) {
-					return $container->doctrineContainer->getRepository("\\App\\PagesModule\\PagesEntity");
-				});
-
 		$manager->addContentType(PagesEntity::LINK, "static pages", array("url"), function($entity) use($container) {
-					return new PagesForm($entity, $container->doctrineContainer->entityFormMapper, $container->doctrineContainer->entityManager);
+					return new PagesForm($container->entityFormMapper, $container->entityManager, $entity);
 				}, function() use ($container) {
 					return $container->pagesRepository->createNew();
 				});

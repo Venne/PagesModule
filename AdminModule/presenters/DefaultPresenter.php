@@ -47,9 +47,9 @@ class DefaultPresenter extends \Venne\Application\UI\AdminPresenter {
 	{
 		$repository = $this->context->pagesRepository;
 		$entity = $this->context->pagesRepository->createNew();
-		$em = $this->context->doctrineContainer->entityManager;
+		$em = $this->context->entityManager;
 		
-		$form = new \App\PagesModule\PagesForm($entity, $this->context->doctrineContainer->entityFormMapper, $em);
+		$form = new \App\PagesModule\PagesForm($entity, $this->context->entityFormMapper, $em);
 		$form->setSuccessLink("default");
 		$form->setFlashMessage("Page has been created");
 		$form->setSubmitLabel("Create");
@@ -65,9 +65,9 @@ class DefaultPresenter extends \Venne\Application\UI\AdminPresenter {
 	{
 		$repository = $this->context->pagesRepository;
 		$entity = $this->context->pagesRepository->find($this->id);
-		$em = $this->context->doctrineContainer->entityManager;
+		$em = $this->context->entityManager;
 		
-		$form = new \App\PagesModule\PagesForm($entity, $this->context->doctrineContainer->entityFormMapper, $em);
+		$form = new \App\PagesModule\PagesForm($entity, $this->context->entityFormMapper, $em);
 		$form->setSuccessLink("this");
 		$form->setFlashMessage("Page has been updated");
 		//$form->setSubmitLabel("Update");
