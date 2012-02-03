@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Venne:CMS (version 2.0-dev released on $WCDATE$)
+ * This file is part of the Venne:CMS (https://github.com/Venne)
  *
- * Copyright (c) 2011 Josef Kříž pepakriz@gmail.com
+ * Copyright (c) 2011, 2012 Josef Kříž (http://www.josef-kriz.cz)
  *
  * For the full copyright and license information, please view
  * the file license.txt that was distributed with this source code.
@@ -11,63 +11,33 @@
 
 namespace App\PagesModule;
 
-use Nette\DI\ContainerBuilder;
+use Venne;
 
 /**
- * @author Josef Kříž
+ * @author Josef Kříž <pepakriz@gmail.com>
  */
-class Module extends \Venne\Module\AutoModule {
+class Module extends \Venne\Module\BaseModule {
+
+
+	/** @var string */
+	protected $description = "Make basic static pages.";
+
+	/** @var string */
+	protected $version = "2.0";
 
 
 
-	public function getName()
+	public function configure(\Nette\DI\Container $container)
 	{
-		return "pages";
-	}
+		parent::configure($container);
 
-
-
-	public function getDescription()
-	{
-		return "Make basic static pages.";
-	}
-
-
-
-	public function getVersion()
-	{
-		return "2.0";
-	}
-
-
-
-	public function getDependencies()
-	{
-		return array();
-	}
-
-
-
-	public function loadConfiguration(ContainerBuilder $container, array $config)
-	{
-		$container->addDefinition("pagesRepository")
-				->setClass("Venne\Doctrine\ORM\BaseRepository")
-				->setFactory("@entityManager::getRepository", array("\\App\\PagesModule\\PagesEntity"))
-				->addTag("repository")
-				->setAutowired(false);
-	}
-
-
-
-	public function configure(\Nette\DI\Container $container, \App\CoreModule\CmsManager $manager)
-	{
-		parent::configure($container, $manager);
-
-		$manager->addContentType(PagesEntity::LINK, "static pages", array("url"), function($entity) use($container) {
-					return new PagesForm($container->entityFormMapper, $container->entityManager, $entity);
-				}, function() use ($container) {
-					return $container->pagesRepository->createNew();
-				});
+		$container->core->cmsManager->addContentType(Entities\PagesEntity::LINK, "static pages", array("url"), function() use($container)
+		{
+			return $container->pages->createPagesForm();
+		}, function() use ($container)
+		{
+			return $container->pages->pagesRepository->createNew();
+		});
 	}
 
 }

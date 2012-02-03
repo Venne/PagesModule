@@ -1,26 +1,27 @@
 <?php
 
 /**
- * Venne:CMS (version 2.0-dev released on $WCDATE$)
+ * This file is part of the Venne:CMS (https://github.com/Venne)
  *
- * Copyright (c) 2011 Josef Kříž pepakriz@gmail.com
+ * Copyright (c) 2011, 2012 Josef Kříž (http://www.josef-kriz.cz)
  *
  * For the full copyright and license information, please view
  * the file license.txt that was distributed with this source code.
  */
 
-namespace App\PagesModule;
+namespace App\PagesModule\Entities;
+
+use Venne;
 
 /**
- * @author Josef Kříž
- * 
+ * @author Josef Kříž <pepakriz@gmail.com>
+ *
  * @property $text
  * @property $created
  * @property $updated
  * @property $website
  */
-class BaseEntity extends \App\CoreModule\BasePageEntity {
-
+class BaseEntity extends \App\CoreModule\Entities\BasePageEntity {
 
 
 	public function __construct()
@@ -28,6 +29,8 @@ class BaseEntity extends \App\CoreModule\BasePageEntity {
 		$this->created = new \Nette\DateTime;
 		$this->updated = new \Nette\DateTime;
 	}
+
+
 
 	/**
 	 * @Column(type="datetime")
@@ -50,7 +53,7 @@ class BaseEntity extends \App\CoreModule\BasePageEntity {
 
 
 	/**
-	 * @param string $created 
+	 * @param string $created
 	 */
 	public function setCreated($created)
 	{
@@ -60,7 +63,7 @@ class BaseEntity extends \App\CoreModule\BasePageEntity {
 
 
 	/**
-	 * @return string 
+	 * @return string
 	 */
 	public function getCreated()
 	{
@@ -70,7 +73,7 @@ class BaseEntity extends \App\CoreModule\BasePageEntity {
 
 
 	/**
-	 * @param string $updated 
+	 * @param string $updated
 	 */
 	public function setUpdated($updated)
 	{
@@ -80,7 +83,7 @@ class BaseEntity extends \App\CoreModule\BasePageEntity {
 
 
 	/**
-	 * @return string 
+	 * @return string
 	 */
 	public function getUpdated()
 	{
@@ -90,7 +93,7 @@ class BaseEntity extends \App\CoreModule\BasePageEntity {
 
 
 	/**
-	 * @param string $url 
+	 * @param string $url
 	 */
 	public function setExpired($url)
 	{
@@ -100,7 +103,7 @@ class BaseEntity extends \App\CoreModule\BasePageEntity {
 
 
 	/**
-	 * @return string 
+	 * @return string
 	 */
 	public function getExpired()
 	{
@@ -110,27 +113,27 @@ class BaseEntity extends \App\CoreModule\BasePageEntity {
 
 
 	/**
-	 * @param string $mainPage 
+	 * @param string $mainPage
 	 */
 	public function setMainPage($mainPage)
 	{
-		$this->mainPage = $mainPage;
+
 	}
 
 
 
 	/**
-	 * @return string 
+	 * @return string
 	 */
 	public function getMainPage()
 	{
-		return $this->mainPage;
+		return (bool)($this->getLocalUrl() == "");
 	}
 
 
 
 	/**
-	 * @param string $text 
+	 * @param string $text
 	 */
 	public function setText($text)
 	{
@@ -140,7 +143,7 @@ class BaseEntity extends \App\CoreModule\BasePageEntity {
 
 
 	/**
-	 * @return string 
+	 * @return string
 	 */
 	public function getText()
 	{
