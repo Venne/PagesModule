@@ -16,7 +16,8 @@ use Venne;
 /**
  * @author Josef Kříž <pepakriz@gmail.com>
  */
-class Module extends \Venne\Module\BaseModule {
+class Module extends \Venne\Module\BaseModule
+{
 
 
 	/** @var string */
@@ -31,7 +32,7 @@ class Module extends \Venne\Module\BaseModule {
 	{
 		parent::configure($container);
 
-		$container->core->cmsManager->addContentType(Entities\PagesEntity::LINK, "static pages", array("url"), function() use($container)
+		$container->core->cmsManager->addContentType(Entities\PagesEntity::LINK, "static page", array("url"), function() use($container)
 		{
 			return $container->pages->createPagesForm();
 		}, function() use ($container)

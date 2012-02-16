@@ -28,7 +28,8 @@ use Venne;
  * @property $website
  * @property $url
  */
-class PagesEntity extends BaseEntity {
+class PagesEntity extends BaseEntity
+{
 
 
 	const LINK = "Pages:Default:default";

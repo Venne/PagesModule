@@ -18,7 +18,18 @@ use Venne;
  *
  * @secured
  */
-class DefaultPresenter extends \Venne\Application\UI\PagePresenter {
+class DefaultPresenter extends \Venne\Application\UI\PagePresenter
+{
 
 
+	public function startup()
+	{
+		parent::startup();
+
+		$form = $this->template->_control["loginForm"];
+
+
+		$form["username"]->getControl()->addAttributes(array());
+
+	}
 }

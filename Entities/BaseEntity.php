@@ -21,7 +21,24 @@ use Venne;
  * @property $updated
  * @property $website
  */
-class BaseEntity extends \App\CoreModule\Entities\BasePageEntity {
+class BaseEntity extends \App\CoreModule\Entities\BasePageEntity
+{
+
+	/**
+	 * @Column(type="datetime")
+	 */
+	protected $created;
+
+	/**
+	 * @Column(type="datetime")
+	 */
+	protected $updated;
+
+	/**
+	 * @Column(type="text")
+	 */
+	protected $text;
+
 
 
 	public function __construct()
@@ -29,26 +46,6 @@ class BaseEntity extends \App\CoreModule\Entities\BasePageEntity {
 		$this->created = new \Nette\DateTime;
 		$this->updated = new \Nette\DateTime;
 	}
-
-
-
-	/**
-	 * @Column(type="datetime")
-	 * @Form(group=Dates)
-	 */
-	protected $created;
-
-	/**
-	 * @Column(type="datetime")
-	 * @Form
-	 */
-	protected $updated;
-
-	/**
-	 * @Column(type="text")
-	 * @Form(type=editor, group=Text, label="")
-	 */
-	protected $text;
 
 
 

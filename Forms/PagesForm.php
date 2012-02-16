@@ -17,7 +17,8 @@ use Doctrine\ORM\EntityManager;
 /**
  * @author Josef Kříž <pepakriz@gmail.com>
  */
-class PagesForm extends \Venne\Forms\PageForm {
+class PagesForm extends \Venne\Forms\PageForm
+{
 
 
 	/**
