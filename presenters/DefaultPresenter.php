@@ -15,21 +15,9 @@ use Venne;
 
 /**
  * @author Josef Kříž <pepakriz@gmail.com>
- *
- * @secured
  */
-class DefaultPresenter extends \Venne\Application\UI\PagePresenter
+class DefaultPresenter extends \App\CoreModule\Presenters\PagePresenter
 {
 
 
-	public function startup()
-	{
-		parent::startup();
-
-		$form = $this->template->_control["loginForm"];
-
-
-		$form["username"]->getControl()->addAttributes(array());
-
-	}
 }
