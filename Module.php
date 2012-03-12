@@ -32,12 +32,9 @@ class Module extends \Venne\Module\BaseModule
 	{
 		parent::configure($container);
 
-		$container->core->cmsManager->addContentType(Entities\PagesEntity::LINK, "static page", array("url"), function() use($container)
+		$container->core->cmsManager->addContentType(Entities\PagesEntity::LINK, "static page", array("url"), $container->pages->pagesRepository, function() use($container)
 		{
 			return $container->pages->createPagesForm();
-		}, function() use ($container)
-		{
-			return $container->pages->pagesRepository->createNew();
 		});
 	}
 
