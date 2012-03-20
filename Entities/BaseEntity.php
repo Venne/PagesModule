@@ -19,7 +19,6 @@ use Venne;
  * @property $text
  * @property $created
  * @property $updated
- * @property $website
  */
 class BaseEntity extends \App\CoreModule\Entities\BasePageEntity
 {

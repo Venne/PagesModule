@@ -1,10 +1,7 @@
 {block content}
 
 {if !$presenter->isModeModule()}
-	{var text=>$entity->text}
-	{var text=>str_replace('src="{$basePath}', 'src="'.$basePath, $text)}
-	{var text=>str_replace('href="{$basePath}', 'href="'.$basePath, $text)}
-	{!$text}
+	{!$entity->text|content}
 {else}
 
 {js /ckeditor/ckeditor.js}

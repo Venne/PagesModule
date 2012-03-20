@@ -42,7 +42,7 @@ class PagesForm extends \Venne\Forms\PageForm
 		$this->addDateTime("updated", "Updated")->setDefaultValue(new \Nette\DateTime);
 
 		$this->addGroup("Text");
-		$this->addEditor("text", NULL, Null, 20);
+		$this->addContentEditor("text", NULL, Null, 20);
 	}
 
 
