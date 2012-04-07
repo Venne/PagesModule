@@ -9,14 +9,14 @@
  * the file license.txt that was distributed with this source code.
  */
 
-namespace App\PagesModule;
+namespace PagesModule;
 
 use Venne;
 
 /**
  * @author Josef Kříž <pepakriz@gmail.com>
  */
-class DefaultPresenter extends \App\CoreModule\Presenters\PagePresenter
+class DefaultPresenter extends \CoreModule\Presenters\PagePresenter
 {
 
 

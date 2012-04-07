@@ -9,7 +9,7 @@
  * the file license.txt that was distributed with this source code.
  */
 
-namespace App\PagesModule\Entities;
+namespace PagesModule\Entities;
 
 use Venne;
 
@@ -20,7 +20,7 @@ use Venne;
  * @property $created
  * @property $updated
  */
-class BaseEntity extends \App\CoreModule\Entities\BasePageEntity
+class BaseEntity extends \CoreModule\Entities\BasePageEntity
 {
 
 	/**
