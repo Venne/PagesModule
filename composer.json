@@ -1,0 +1,17 @@
+{
+	"name": "venne/pages-module",
+	"description": "Pages module",
+	"keywords": ["cms", "nette", "venne", "module"],
+	"homepage": "https://github.com/Venne/PagesModule",
+	"authors": [
+		{
+			"name": "Josef Kříž",
+			"homepage": "http://josef-kriz.cz"
+		}
+	],
+	"require": {
+		"php" : ">=5.3.2",
+		"venne/cms" : "dev-master",
+		"venne/coreModule" : "dev-master"
+	}
+}
